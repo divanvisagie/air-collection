@@ -1,0 +1,10 @@
+*.o
+dump1090
+*/testfiles/*.bin
+misc
+frames.js
+.*.swp
+node_modules
+*.log
+log
+data
