@@ -1,11 +1,40 @@
-const EventEmitter = require('events').EventEmitter
+import { EventEmitter } from 'events'
+import { inherits } from 'util'
+import { Client } from 'pg'
+
 const dump1090 = require('../../node_modules/node-dump1090/build/Release/dump1090.node')
 const NativeEmitter = dump1090.NativeEmitter
-const inherits = require('util').inherits
 inherits(NativeEmitter, EventEmitter)
 
+const createSqlClient = async (): Promise<Client> => {
+  const client = new Client({
+    user: 'postgres',
+    password: 'postgres',
+    database: 'flight-data',
+  })
+  await client.connect()
+  return client
+}
+
+const insertRecording = async (
+  client: Client,
+  { hex, flight, lat, lon, altitude, track, speed }: Recording,
+) => {
+  const queryText =
+    'INSERT INTO recording(hex,flight,lat,lon,altitude,track,speed) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id'
+  const result = await client.query(queryText, [
+    hex,
+    flight,
+    lat,
+    lon,
+    altitude,
+    track,
+    speed,
+  ])
+  console.log('Inserted', result)
+}
+
 interface Recording {
-  id: number
   hex: string
   flight: string
   lat: number
@@ -14,24 +43,32 @@ interface Recording {
   track: number
   speed: number
 }
-
-const knex = require('knex')({
-  client: 'postgres',
-  connection: async () => {
-    return {
-      host: '0.0.0.0',
-      user: 'postgres',
-      password: 'postgres',
-      database: 'flight-data',
-    }
-  },
-})
-
 const emitter = new NativeEmitter()
 
-emitter.on('data', (evt: any) => {
-  console.log(evt)
-  knex('recording').insert(evt)
-})
+const test: Recording[] = [
+  {
+    hex: '009993',
+    flight: 'SFR  ',
+    lat: -29.797897,
+    lon: 31.129074,
+    altitude: 10275,
+    track: 49,
+    speed: 292,
+  },
+]
 
-emitter.callAndEmit()
+async function main() {
+  const client = await createSqlClient()
+  insertRecording(client, test[0])
+
+  emitter.on('data', (evt: any) => {
+    console.log(evt)
+    const records = evt as Recording[]
+    records.forEach((x) => {
+      insertRecording(client, x)
+    })
+  })
+
+  emitter.callAndEmit()
+}
+main()

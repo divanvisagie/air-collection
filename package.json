@@ -14,6 +14,7 @@
     "json-to-csv": "json2csv -i data/processed.json >> data/processed.csv ; json2csv -i data/aircraft-db.json >> data/aircraft-data.csv"
   },
   "dependencies": {
+    "@types/knex": "^0.16.1",
     "@types/node": "^16.4.13",
     "@types/pg": "^8.6.1",
     "@types/ramda": "^0.27.44",

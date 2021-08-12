@@ -34,6 +34,13 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.2.tgz#423c77877d0569db20e1fc80885ac4118314010e"
   integrity sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==
 
+"@types/knex@^0.16.1":
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.16.1.tgz#619678407265c675463c563ed38323461a49515d"
+  integrity sha512-54gWD1HWwdVx5iLHaJ1qxH3I6KyBsj5fFqzRpXFn7REWiEB2jwspeVCombNsocSrqPd7IRPqKrsIME7/cD+TFQ==
+  dependencies:
+    knex "*"
+
 "@types/node@*", "@types/node@^16.4.13":
   version "16.4.13"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.13.tgz#7dfd9c14661edc65cccd43a29eb454174642370d"
@@ -665,7 +672,7 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-knex@^0.21.21:
+knex@*, knex@^0.21.21:
   version "0.21.21"
   resolved "https://registry.yarnpkg.com/knex/-/knex-0.21.21.tgz#b1335c75afd15ff83371b096e9cc4c4eafab8c05"
   integrity sha512-cjw5qO1EzVKjbywcVa61IQJMLt7PfYBRI/2NwCA/B9beXgbw652wDNLz+JM+UKKNsfwprq0ugYqBYc9q4JN36A==
