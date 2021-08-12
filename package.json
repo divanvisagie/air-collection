@@ -6,6 +6,7 @@
   "author": "Divan visagie <me@dvisagie.com>",
   "license": "MIT",
   "scripts": {
+    "db:migrate": "knex migrate:latest",
     "start": "ts-node src/node-collector/index.ts",
     "raw-to-json": "ts-node src/scripts/raw-to-json/index.ts",
     "single-line-to-json": "ts-node src/scripts/single-line-to-json/index.ts",
@@ -16,6 +17,7 @@
     "@types/node": "^16.4.13",
     "@types/pg": "^8.6.1",
     "@types/ramda": "^0.27.44",
+    "knex": "^0.21.21",
     "node-dump1090": "^1.0.0",
     "pg": "^8.7.1",
     "ramda": "^0.27.1",
