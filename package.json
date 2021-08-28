@@ -18,11 +18,14 @@
     "@types/node": "^16.4.13",
     "@types/pg": "^8.6.1",
     "@types/ramda": "^0.27.44",
+    "@types/sqlite3": "^3.1.7",
     "knex": "^0.21.21",
     "node-dump1090": "^1.0.0",
     "pg": "^8.7.1",
     "ramda": "^0.27.1",
     "sequelize": "^6.6.5",
+    "sqlite": "^4.0.23",
+    "sqlite3": "^5.0.2",
     "ts-node": "^10.2.0",
     "typescript": "^4.3.5"
   }
