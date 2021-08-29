@@ -23,7 +23,7 @@ const test: Recording[] = [
 
 async function main() {
   const client = await createSqlClient()
-  insertRecordingBatch(client, test)
+  await insertRecordingBatch(client, test)
 
   emitter.on('data', (evt: any) => {
     console.log(evt)

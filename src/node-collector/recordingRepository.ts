@@ -16,17 +16,22 @@ export const insertRecording = async (
   { hex, flight, lat, lon, altitude, track, speed }: Recording,
 ) => {
   const queryText =
-    'INSERT INTO recording(hex,flight,lat,lon,altitude,track,speed) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id'
-  const result = await client.query(queryText, [
-    hex,
-    flight,
-    lat,
-    lon,
-    altitude,
-    track,
-    speed,
-  ])
-  console.log('Inserted', result)
+    'INSERT INTO recording(hex,flight,lat,lon,altitude,track,speed,recorded) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id'
+  try {
+    const result = await client.query(queryText, [
+      hex,
+      flight,
+      lat,
+      lon,
+      altitude,
+      track,
+      speed,
+      Date.now(),
+    ])
+    console.log('Inserted', result)
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 export const insertRecordingBatch = async (

@@ -10,6 +10,7 @@ export async function up(knex: Knex): Promise<void> {
     table.integer('altitude')
     table.integer('track')
     table.integer('speed')
+    table.bigInteger('recorded')
   })
 }
 
